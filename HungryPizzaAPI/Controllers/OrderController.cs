@@ -17,22 +17,22 @@ namespace HungryPizzaAPI.Controllers
         }
         
         [HttpGet]
-        public JsonResult Index()
-        {
-            return Json("Ola");
-        }
-        
-        [HttpGet]
         public JsonResult List()
         {
             return Json(_orderService.Get());
+        }
+        
+        [HttpGet("{cpf}")]
+        public JsonResult List(string cpf = null)
+        {
+            return Json(_orderService.Get(cpf));
         }
 
         [HttpPost]
         public JsonResult Place(Order order)
         {
-            
-            return Json(order);
+            var finishedOrder = _orderService.Create(order);
+            return Json(finishedOrder);
         }
     }
 }

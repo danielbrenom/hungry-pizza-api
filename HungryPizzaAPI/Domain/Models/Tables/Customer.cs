@@ -2,9 +2,9 @@
 {
     public class Customer
     {
-        private string _cpf;
-        private string _cep;
-        private string _name;
-        private string _address;
+        public string CPF;
+        public string CEP;
+        public string Name;
+        public string Address;
     }
 }

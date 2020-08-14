@@ -25,13 +25,5 @@ namespace HungryPizzaAPI.Domain.Configurations
                 setting.GetRequiredService<IOptions<HungryPizzaMongoSettings>>().Value);
             _serviceCollection.AddSingleton<OrderService>();
         }
-
-        public void ConfigureMapper()
-        {
-            var mapper = new MapperConfiguration(config =>
-                {
-                    config.CreateMap<Order, Models.Collections.Order>().ReverseMap();
-                });
-        }
     }
 }

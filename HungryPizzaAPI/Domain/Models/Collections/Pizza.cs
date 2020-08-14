@@ -6,34 +6,34 @@ namespace HungryPizzaAPI.Domain.Models.Collections
 {
     public class Pizza
     {
-        private IList<string> _tastes;
-        private int _price;
+        public List<string> Tastes;
+        public int Price;
 
         public Pizza()
         {
-            _tastes = new List<string>();
-            _price = 0;
+            Tastes = new List<string>();
+            Price = 0;
         }
 
         public void addTaste(string taste)
         {
-            if (_tastes.Count > 2) return;
-            _tastes.Add(taste);
+            if (Tastes.Count > 2) return;
+            Tastes.Add(taste);
         }
 
         public IList<string> getTastes()
         {
-            return _tastes;
+            return Tastes;
         }
 
         public void setPrice(int price)
         {
-            _price = price;
+            Price = price;
         }
 
         public int getPrice()
         {
-            return _price;
+            return Price;
         }
     }
 }
