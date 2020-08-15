@@ -1,6 +1,6 @@
-﻿using AutoMapper;
-using HungryPizzaAPI.Domain.Requests;
+﻿using HungryPizzaAPI.Domain.Repositories;
 using HungryPizzaAPI.Services;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
@@ -11,6 +11,7 @@ namespace HungryPizzaAPI.Domain.Configurations
     {
         private IServiceCollection _serviceCollection;
         private IConfiguration _configuration;
+
         public ApplicationConfigurator(IServiceCollection service, IConfiguration configuration)
         {
             _serviceCollection = service;
@@ -23,7 +24,11 @@ namespace HungryPizzaAPI.Domain.Configurations
                 _configuration.GetSection(nameof(HungryPizzaMongoSettings)));
             _serviceCollection.AddSingleton<IHungryPizzaMongoSettings>(setting =>
                 setting.GetRequiredService<IOptions<HungryPizzaMongoSettings>>().Value);
-            _serviceCollection.AddSingleton<OrderService>();
+            _serviceCollection.AddScoped<OrderService>();
+            _serviceCollection.AddScoped<OrderRepository>();
+            _serviceCollection.AddDbContext<DatabaseContext>(options =>
+                options.UseSqlServer(_configuration.GetConnectionString("ConnectionString"))
+            );
         }
     }
 }

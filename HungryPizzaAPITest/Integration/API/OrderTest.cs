@@ -13,7 +13,7 @@ namespace HungryPizzaAPITest.Integration.API
     {
         private readonly HttpClient _httpClient;
 
-        public OrderTest(WebApplicationFactory<Startup> factory)
+        public OrderTest(ApplicationFactory<Startup> factory)
         {
             _httpClient = factory.CreateClient();
         }
