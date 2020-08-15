@@ -1,10 +1,16 @@
-﻿namespace HungryPizzaAPI.Domain.Models.Tables
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace HungryPizzaAPI.Domain.Models.Tables
 {
     public class Customer
     {
-        public string CPF;
-        public string CEP;
-        public string Name;
-        public string Address;
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int Id { get; set; }
+        public string CPF { get; set; }
+        public string CEP { get; set; }
+        public string Name { get; set; }
+        public string Address { get; set; }
     }
 }

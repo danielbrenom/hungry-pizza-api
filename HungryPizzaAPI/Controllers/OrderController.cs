@@ -1,12 +1,11 @@
-﻿using HungryPizzaAPI.Domain.Models.Collections;
+﻿using HungryPizzaAPI.Domain.Requests;
 using HungryPizzaAPI.Services;
 using Microsoft.AspNetCore.Mvc;
-using Order = HungryPizzaAPI.Domain.Requests.Order;
 
 namespace HungryPizzaAPI.Controllers
 {
     [ApiController]
-    [Route("[controller]/[action]")]
+    [Route("[controller]")]
     public class OrderController : Controller
     {
         private readonly OrderService _orderService;
@@ -23,16 +22,19 @@ namespace HungryPizzaAPI.Controllers
         }
         
         [HttpGet("{cpf}")]
-        public JsonResult List(string cpf = null)
+        public JsonResult List(string cpf)
         {
             return Json(_orderService.Get(cpf));
         }
 
         [HttpPost]
-        public JsonResult Place(Order order)
+        public JsonResult Place(OrderRequest orderRequest)
         {
-            var finishedOrder = _orderService.Create(order);
-            return Json(finishedOrder);
+            var finishedOrder = _orderService.Place(orderRequest);
+            return new JsonResult(finishedOrder)
+            {
+                StatusCode = 201
+            };
         }
     }
 }

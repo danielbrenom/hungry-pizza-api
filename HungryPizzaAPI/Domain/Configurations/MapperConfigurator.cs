@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
-using AutoMapper;
+﻿using AutoMapper;
+using HungryPizzaAPI.Domain.Models.Collections;
+using HungryPizzaAPI.Domain.Models.Tables;
 using HungryPizzaAPI.Domain.Requests;
+using HungryPizzaAPI.Domain.Responses;
 
 namespace HungryPizzaAPI.Domain.Configurations
 {
@@ -8,12 +10,13 @@ namespace HungryPizzaAPI.Domain.Configurations
     {
         public MapperConfigurator()
         {
-            CreateMap<Order, Models.Collections.Order>();
-            CreateMap<Models.Collections.Order, Order>().ForMember(
-                dest => dest.Identifier, 
-                opt => opt.MapFrom(src => src.Id));
-            CreateMap<Pizza,Models.Collections.Pizza>().ReverseMap();
-            CreateMap<Customer,Models.Tables.Customer>().ReverseMap();
+            CreateMap<OrderRequest, Order>();
+            CreateMap<Order, Responses.OrderResponse>()
+                .ForMember(dest => dest.Identifier,
+                    opt => opt.MapFrom(src => src.OrderTransaction));
+            CreateMap<PizzaRequest, Pizza>().ReverseMap();
+            CreateMap<Pizza, PizzaResponse>();
+            CreateMap<CustomerRequest, Customer>().ReverseMap();
         }
     }
 }

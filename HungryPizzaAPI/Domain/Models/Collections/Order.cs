@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using HungryPizzaAPI.Domain.Models.Tables;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
@@ -10,20 +11,19 @@ namespace HungryPizzaAPI.Domain.Models.Collections
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
         public string Id { get; set; }
+
+        public string OrderTransaction { get; set; }
         public List<Pizza> Pizzas;
-        public int Total;
+        public float Total { get; set; }
         public Customer Customer;
+        private string CreatedAt { get; set; }
 
         public Order()
         {
             Pizzas = new List<Pizza>();
-            Total = 0;
+            Total = 0f;
             Customer = new Customer();
-        }
-
-        public void setCustomer()
-        {
-            
+            CreatedAt = DateTime.Now.ToString("s");
         }
     }
 }

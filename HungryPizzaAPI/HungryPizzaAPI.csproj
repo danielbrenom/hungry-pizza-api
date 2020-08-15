@@ -7,6 +7,13 @@
     <ItemGroup>
       <PackageReference Include="AutoMapper" Version="10.0.0" />
       <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.0.1" />
+      <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.7" />
+      <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
+      <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.7" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.1.6" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.7" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.7" />
+      <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.4" />
       <PackageReference Include="MongoDB.Driver" Version="2.11.0" />
       <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
     </ItemGroup>
@@ -28,7 +35,16 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Repositories" />
+      <Compile Remove="Migrations\20200814175514_Initial.cs" />
+      <Compile Remove="Migrations\20200814175514_Initial.Designer.cs" />
+      <Compile Remove="Migrations\20200814180956_Tastes.cs" />
+      <Compile Remove="Migrations\20200814180956_Tastes.Designer.cs" />
+      <Compile Remove="Migrations\20200814181317_Initial.cs" />
+      <Compile Remove="Migrations\20200814181317_Initial.Designer.cs" />
+      <Compile Remove="Migrations\20200814181413_Initial.cs" />
+      <Compile Remove="Migrations\20200814181413_Initial.Designer.cs" />
+      <Compile Remove="Migrations\20200814183200_Initial.cs" />
+      <Compile Remove="Migrations\20200814183200_Initial.Designer.cs" />
     </ItemGroup>
 
 
