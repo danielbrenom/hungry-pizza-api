@@ -9,8 +9,8 @@ namespace HungryPizzaAPI.Domain.Configurations
 {
     public class ApplicationConfigurator
     {
-        private IServiceCollection _serviceCollection;
-        private IConfiguration _configuration;
+        private readonly IConfiguration _configuration;
+        private readonly IServiceCollection _serviceCollection;
 
         public ApplicationConfigurator(IServiceCollection service, IConfiguration configuration)
         {

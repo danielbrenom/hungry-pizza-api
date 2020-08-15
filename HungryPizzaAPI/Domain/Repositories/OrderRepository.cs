@@ -1,8 +1,6 @@
-﻿﻿using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
 using AutoMapper;
 using HungryPizzaAPI.Domain.Configurations;
 using HungryPizzaAPI.Domain.Models.Collections;
@@ -15,12 +13,12 @@ namespace HungryPizzaAPI.Domain.Repositories
 {
     public class OrderRepository
     {
-        private readonly IMongoCollection<Order> _orders;
         private readonly DatabaseContext _database;
         private readonly IMapper _mapper;
+        private readonly IMongoCollection<Order> _orders;
         private OrderRequest _orderRequest;
 
-        public OrderRepository(IHungryPizzaMongoSettings settings,DatabaseContext databaseContext, IMapper mapper)
+        public OrderRepository(IHungryPizzaMongoSettings settings, DatabaseContext databaseContext, IMapper mapper)
         {
             var client = new MongoClient(settings.ConnectionString);
             var database = client.GetDatabase(settings.DatabaseName);
@@ -39,9 +37,7 @@ namespace HungryPizzaAPI.Domain.Repositories
         {
             _orderRequest = orderRequest;
             if (_orderRequest.Pizzas.FirstOrDefault(pizza => pizza.Tastes.Count > 2) != null)
-            {
                 OrderExceptions.PizzaTastesExceedLimit();
-            }
             CheckCustomer();
             return Create(_mapper.Map<Order>(_orderRequest));
         }
@@ -67,15 +63,11 @@ namespace HungryPizzaAPI.Domain.Repositories
         {
             var customer = _database.Customers
                 .FirstOrDefault(records => records.CPF == _orderRequest.Customer.CPF);
-            if (customer is null && _orderRequest.Customer.Address is null && 
+            if (customer is null && _orderRequest.Customer.Address is null &&
                 _orderRequest.Customer.CEP is null && _orderRequest.Customer.CEP is null)
-            {
                 OrderExceptions.CustomerOrAddressNotFound();
-            }
             if (_orderRequest.Customer.Address is null && customer != null)
-            {
                 _orderRequest.Customer = _mapper.Map<CustomerRequest>(customer);
-            }
 
             if (!(customer is null)) return;
             _database.Customers.Add(_mapper.Map<Customer>(_orderRequest.Customer));

@@ -8,15 +8,8 @@ namespace HungryPizzaAPI.Domain.Models.Collections
 {
     public class Order
     {
-        [BsonId]
-        [BsonRepresentation(BsonType.ObjectId)]
-        public string Id { get; set; }
-
-        public string OrderTransaction { get; set; }
-        public List<Pizza> Pizzas;
-        public float Total { get; set; }
         public Customer Customer;
-        private string CreatedAt { get; set; }
+        public List<Pizza> Pizzas;
 
         public Order()
         {
@@ -25,5 +18,13 @@ namespace HungryPizzaAPI.Domain.Models.Collections
             Customer = new Customer();
             CreatedAt = DateTime.Now.ToString("s");
         }
+
+        [BsonId]
+        [BsonRepresentation(BsonType.ObjectId)]
+        public string Id { get; set; }
+
+        public string OrderTransaction { get; set; }
+        public float Total { get; set; }
+        private string CreatedAt { get; }
     }
 }

@@ -5,9 +5,8 @@ namespace HungryPizzaAPI.Domain.Responses
 {
     public class PizzaResponse
     {
-        [JsonProperty("tastes")]
-        public List<string> Tastes { get; set; }
-        [JsonProperty("price")]
-        public float Price { get; set; }
+        [JsonProperty("tastes")] public List<string> Tastes { get; set; }
+
+        [JsonProperty("price")] public float Price { get; set; }
     }
 }

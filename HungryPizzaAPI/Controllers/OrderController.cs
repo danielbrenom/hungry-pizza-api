@@ -14,13 +14,13 @@ namespace HungryPizzaAPI.Controllers
         {
             _orderService = orderService;
         }
-        
+
         [HttpGet]
         public JsonResult List()
         {
             return Json(_orderService.Get());
         }
-        
+
         [HttpGet("{cpf}")]
         public JsonResult List(string cpf)
         {

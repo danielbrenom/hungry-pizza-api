@@ -8,6 +8,7 @@ namespace HungryPizzaAPI.Domain.Models.Tables
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
+
         public string CPF { get; set; }
         public string CEP { get; set; }
         public string Name { get; set; }

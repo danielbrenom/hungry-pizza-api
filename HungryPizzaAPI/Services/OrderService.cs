@@ -14,10 +14,19 @@ namespace HungryPizzaAPI.Services
             _orderRepository = orderRepository;
         }
 
-        public List<OrderResponse> Get() => _orderRepository.Get();
+        public List<OrderResponse> Get()
+        {
+            return _orderRepository.Get();
+        }
 
-        public List<OrderResponse> Get(string cpf) =>  _orderRepository.Get(cpf);
+        public List<OrderResponse> Get(string cpf)
+        {
+            return _orderRepository.Get(cpf);
+        }
 
-        public OrderResponse Place(OrderRequest orderRequest) => _orderRepository.Place(orderRequest);
+        public OrderResponse Place(OrderRequest orderRequest)
+        {
+            return _orderRepository.Place(orderRequest);
+        }
     }
 }
