@@ -1,4 +1,5 @@
-﻿using HungryPizzaAPI.Domain.Repositories;
+﻿using HungryPizzaAPI.Domain.Interfaces;
+using HungryPizzaAPI.Domain.Repositories;
 using HungryPizzaAPI.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -24,7 +25,7 @@ namespace HungryPizzaAPI.Domain.Configurations
                 _configuration.GetSection(nameof(HungryPizzaMongoSettings)));
             _serviceCollection.AddSingleton<IHungryPizzaMongoSettings>(setting =>
                 setting.GetRequiredService<IOptions<HungryPizzaMongoSettings>>().Value);
-            _serviceCollection.AddScoped<OrderService>();
+            _serviceCollection.AddScoped<IOrderService,OrderService>();
             _serviceCollection.AddScoped<OrderRepository>();
             _serviceCollection.AddDbContext<DatabaseContext>(options =>
                 options.UseSqlServer(_configuration.GetConnectionString("ConnectionString"))

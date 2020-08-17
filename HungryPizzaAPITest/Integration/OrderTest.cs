@@ -4,6 +4,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using HungryPizzaAPI;
+using HungryPizzaAPITest.Configuration;
 using Xunit;
 
 namespace HungryPizzaAPITest.Integration.API
@@ -30,8 +31,7 @@ namespace HungryPizzaAPITest.Integration.API
         public async Task PlaceOrder()
         {
             var request = new HttpRequestMessage(new HttpMethod("POST"), "/order");
-            var order = File.ReadAllText(@"Domain/Fixtures/order.json");
-            request.Content = new StringContent(order.Replace("\r\n", ""));
+            request.Content = new StringContent(OrderFixtures.GetOrderRequestJson());
             request.Content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json");
             var response = await _httpClient.SendAsync(request);
             response.EnsureSuccessStatusCode();

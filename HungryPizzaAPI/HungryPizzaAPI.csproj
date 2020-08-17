@@ -47,5 +47,9 @@
       <Compile Remove="Migrations\20200814183200_Initial.Designer.cs" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Domain\Fixtures" />
+    </ItemGroup>
+
 
 </Project>

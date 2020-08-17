@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
+using HungryPizzaAPI.Domain.Interfaces;
 using HungryPizzaAPI.Domain.Repositories;
 using HungryPizzaAPI.Domain.Requests;
 using HungryPizzaAPI.Domain.Responses;
 
 namespace HungryPizzaAPI.Services
 {
-    public class OrderService
+    public class OrderService: IOrderService
     {
         private readonly OrderRepository _orderRepository;
 

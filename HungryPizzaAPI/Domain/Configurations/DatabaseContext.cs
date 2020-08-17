@@ -1,11 +1,12 @@
-﻿using HungryPizzaAPI.Domain.Models.Tables;
+﻿using HungryPizzaAPI.Domain.Interfaces;
+using HungryPizzaAPI.Domain.Models.Tables;
 using Microsoft.EntityFrameworkCore;
 
 namespace HungryPizzaAPI.Domain.Configurations
 {
     public class DatabaseContext : DbContext
     {
-        public DatabaseContext(DbContextOptions options) : base(options)
+        public DatabaseContext(DbContextOptions options): base(options)
         {
         }
 

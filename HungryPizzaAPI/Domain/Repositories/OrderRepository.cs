@@ -7,6 +7,7 @@ using HungryPizzaAPI.Domain.Models.Collections;
 using HungryPizzaAPI.Domain.Models.Tables;
 using HungryPizzaAPI.Domain.Requests;
 using HungryPizzaAPI.Domain.Responses;
+using Microsoft.EntityFrameworkCore;
 using MongoDB.Driver;
 
 namespace HungryPizzaAPI.Domain.Repositories

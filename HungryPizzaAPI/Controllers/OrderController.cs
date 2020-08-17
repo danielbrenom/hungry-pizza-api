@@ -1,4 +1,5 @@
-﻿using HungryPizzaAPI.Domain.Requests;
+﻿using HungryPizzaAPI.Domain.Interfaces;
+using HungryPizzaAPI.Domain.Requests;
 using HungryPizzaAPI.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,9 +9,9 @@ namespace HungryPizzaAPI.Controllers
     [Route("[controller]")]
     public class OrderController : Controller
     {
-        private readonly OrderService _orderService;
+        private readonly IOrderService _orderService;
 
-        public OrderController(OrderService orderService)
+        public OrderController(IOrderService orderService)
         {
             _orderService = orderService;
         }

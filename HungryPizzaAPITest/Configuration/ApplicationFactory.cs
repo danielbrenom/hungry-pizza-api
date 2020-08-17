@@ -1,5 +1,8 @@
 ﻿using HungryPizzaAPI;
 using HungryPizzaAPI.Domain.Configurations;
+using HungryPizzaAPI.Domain.Interfaces;
+using HungryPizzaAPI.Domain.Repositories;
+using HungryPizzaAPI.Services;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.EntityFrameworkCore;
@@ -8,7 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
-namespace HungryPizzaAPITest.Integration
+namespace HungryPizzaAPITest.Configuration
 {
     public class ApplicationFactory<TStartup> : WebApplicationFactory<Startup>
     {
@@ -35,7 +38,8 @@ namespace HungryPizzaAPITest.Integration
                     configuration.GetSection(nameof(HungryPizzaMongoSettings)));
                 services.AddSingleton<IHungryPizzaMongoSettings>(setting =>
                     setting.GetRequiredService<IOptions<HungryPizzaMongoSettings>>().Value);
-
+                services.AddScoped<IOrderService,OrderService>();
+                services.AddScoped<OrderRepository>();
                 // Build the service provider.
                 var sp = services.BuildServiceProvider();
 
@@ -44,10 +48,10 @@ namespace HungryPizzaAPITest.Integration
                 {
                     var scopedServices = scope.ServiceProvider;
                     var appDb = scopedServices.GetRequiredService<DatabaseContext>();
-
                     var logger = scopedServices.GetRequiredService<ILogger<ApplicationFactory<TStartup>>>();
                     // Ensure the database is created.
                     appDb.Database.EnsureCreated();
+                    DatabaseSeeder.Seed(appDb);
                 }
             });
         }

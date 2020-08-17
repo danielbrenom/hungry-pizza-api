@@ -21,4 +21,12 @@
       <ProjectReference Include="..\HungryPizzaAPI\HungryPizzaAPI.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Content Include="Fixtures\order.json">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+    </ItemGroup>
+
 </Project>
